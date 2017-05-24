@@ -14,13 +14,14 @@ def create_app(object_name):
 		object_name: the python path of the config object,
 					 e.g. appname.settings.ProdConfig
 	"""
-	app = Flask(__name__)
+	app = Flask(__name__, static_url_path='/static')
 	app.config.from_object(object_name)
 
 	# Import and register the different assets bundles
 	assets_env.init_app(app)
 	assets_loader = PythonAssetsLoader(assets)
 	for name, bundle in assets_loader.load_bundles().items():
+			print(name)
 			assets_env.register(name, bundle)
 
 	# Loading the Blueprint in controllers defined by main.py - Handles routing
