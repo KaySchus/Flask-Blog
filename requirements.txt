@@ -1,6 +1,8 @@
 appdirs==1.4.3
 click==6.7
 Flask==0.12.2
+Flask-Assets==0.12
+Flask-Script==2.0.5
 itsdangerous==0.24
 Jinja2==2.9.6
 MarkupSafe==1.0
@@ -8,4 +10,5 @@ micawber==0.3.4
 packaging==16.8
 pyparsing==2.2.0
 six==1.10.0
+webassets==0.12.1
 Werkzeug==0.12.2
