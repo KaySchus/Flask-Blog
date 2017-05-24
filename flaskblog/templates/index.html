@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/blog.css') }}" />
+{% endblock %}
+
+{% block body %}
+    <div id="layout" class="pure-g">
+        <div class="sidebar pure-u-1 pure-u-md-1-4">
+            <div class="header">
+                <h1 class="brand-title">Flask Blog</h1>
+                <h2 class="brand-tagline">Creating a simple blog using Flask</h2>
+
+                <nav class="nav">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a class="pure-button" href="http://purecss.io">Pure</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="pure-button" href="http://flask.pocoo.org/">Flask</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="content pure-u-1 pure-u-md-3-4">
+            <div>
+                <!-- A wrapper for all the blog posts -->
+                <div class="posts">
+                    <h1 class="content-subhead">Pinned Post</h1>
+
+                    <!-- A single blog post -->
+                    <section class="post">
+                        <header class="post-header">
+                            <img width="48" height="48" alt="Kaleb Schuster&#x27;s avatar" class="post-avatar" src="{{ url_for('static', filename='media/images/kaleb-schuster-avatar.png') }}">
+
+                            <h2 class="post-title">We are now 8/10!</h2>
+
+                            <p class="post-meta">
+                                By <a href="#" class="post-author">Kaleb Schuster</a> under <a class="post-category post-category-mnh" href="#">Mythic Nighthold</a>
+                            </p>
+                        </header>
+
+                        <div class="post-description">
+                            <p>
+                                This Monday, 5/22, we managed to down Mythic High Botanist Tel'arn! Congratulations to everyone and involved and let's hope for another great week so we can down Mythic Grand Magistrix Elisande.
+                            </p>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="posts">
+                    <h1 class="content-subhead">Recent Posts</h1>
+
+                    <section class="post">
+                        <header class="post-header">
+                            <img width="48" height="48" alt="Kaleb Schuster&#x27;s avatar" class="post-avatar" src="{{ url_for('static', filename='media/images/kaleb-schuster-avatar.png') }}">
+
+                            <h2 class="post-title">Failure on Spellblade</h2>
+
+                            <p class="post-meta">
+                                By <a class="post-author" href="#">Kaleb Schuster</a> under <a class="post-category post-category-mnh" href="#">Mythic Nighthold</a>
+                            </p>
+                        </header>
+
+                        <div class="post-description">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="post">
+                        <header class="post-header">
+                            <img width="48" height="48" alt="Kaleb Schuster&#x27;s avatar" class="post-avatar" src="{{ url_for('static', filename='media/images/kaleb-schuster-avatar.png') }}">
+
+                            <h2 class="post-title">Random WoW Screenshots</h2>
+
+                            <p class="post-meta">
+                                By <a class="post-author" href="#">Kaleb Schuster</a> under <a class="post-category" href="#">Uncategorized</a>
+                            </p>
+                        </header>
+
+                        <div class="post-description">
+                            <div class="post-images pure-g">
+                                <div class="pure-u-1 pure-u-md-1-2">
+                                    <a href="#">
+                                        <img alt="Photo of the most beautiful Owl Chicken"
+                                             class="pure-img-responsive"
+                                             src="{{ url_for('static', filename='media/images/chicken.jpg') }}">
+                                    </a>
+
+                                    <div class="post-image-meta">
+                                        <h3>Toastedbun Photo</h3>
+                                    </div>
+                                </div>
+
+                                <div class="pure-u-1 pure-u-md-1-2">
+                                    <a href="#">
+                                        <img alt="Photo of us raptor raping Nythendra's corpse"
+                                             class="pure-img-responsive"
+                                             src="{{ url_for('static', filename='media/images/nythendra.jpg') }}">
+                                        </a>
+
+                                    <div class="post-image-meta">
+                                        <h3>Raid Boss Down!</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="footer">
+                    <div class="pure-menu pure-menu-horizontal">
+                        <ul>
+                            <li class="pure-menu-item"><a href="https://github.com/KaySchus/Flask-Blog" class="pure-menu-link">About</a></li>
+                            <li class="pure-menu-item"><a href="https://github.com/KaySchus/Flask-Blog" class="pure-menu-link">GitHub</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
