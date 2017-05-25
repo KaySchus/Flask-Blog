@@ -1,11 +1,11 @@
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms import TextField, PasswordField
 from wtforms import validators
 
 from .models import User
 
 
-class LoginForm(Form):
+class LoginForm(FlaskForm):
 	username = TextField(u'Username', validators=[validators.required()])
 	password = PasswordField(u'Password', validators=[validators.optional()])
 

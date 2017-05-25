@@ -2,6 +2,10 @@
 
 {% block title %}Flask Login Example{% endblock %}
 
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/sidebar.css') }}" />
+{% endblock %}
+
 {% block body %}
 	<div id="layout" class="pure-g">
 		<div class="sidebar pure-u-1 pure-u-md-1-4">
@@ -20,6 +24,39 @@
 					</ul>
 				</nav>
 			</div>
+		</div>
+
+		<div class="content pure-u-1 pure-u-md-3-4">
+			<form class="pure-form pure-form-aligned" role="form" action="{{ url_for('.login_route') }}" method="post">
+				<fieldset>
+					{{ form.hidden_tag() }}
+
+					<div class="pure-control-group">
+						{{ form.username.label }}
+						{% if form.username.errors %}
+							{% for e in form.username.errors %}
+								<p class="help-block">{{ e }}</p>
+							{% endfor %}
+						{% endif %}
+						{{ form.username() }}
+						<span class="pure-form-message-inline">This is a required field.</span>
+					</div>
+
+					<div class="pure-control-group">
+						{{ form.password.label }}
+						{% if form.password.errors %}
+							{% for e in form.password.errors %}
+								<p class="help-block">{{ e }}</p>
+							{% endfor %}
+						{% endif %}
+						{{ form.password(class_="form-control") }}
+					</div>
+
+					<div class="pure-controls">
+						<button type="submit" class="pure-button pure-button-primary">Submit</button>
+					</div>
+				</fieldset>
+            </form>
 		</div>
 	</div>
 {% endblock %}
