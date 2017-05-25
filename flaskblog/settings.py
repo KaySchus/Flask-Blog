@@ -1,6 +1,8 @@
 class Config(object):
     # Secret key for session variables, will be used later
-    SECRET_KEY = 'REPLACE ME - NOT USED YET'
+    SECRET_KEY = 'SUPER SECRET'
+
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 # Production Configuration
 class ProdConfig(Config):

@@ -2,12 +2,13 @@ from flask import Flask
 from webassets.loaders import PythonLoader as PythonAssetsLoader
 
 from flaskblog import assets
-from flaskblog.models import db
+from flaskblog.models import db, user_datastore
 from flaskblog.controllers.main import main
 
 from flaskblog.extensions import (
 	assets_env,
-	login_manager
+	login_manager,
+	security
 )
 
 def create_app(object_name):
@@ -23,13 +24,15 @@ def create_app(object_name):
 
 	db.init_app(app)
 
+	# Initializes Security for the current app
+	security.init_app(app, user_datastore)
+
 	login_manager.init_app(app)
 
 	# Import and register the different assets bundles
 	assets_env.init_app(app)
 	assets_loader = PythonAssetsLoader(assets)
 	for name, bundle in assets_loader.load_bundles().items():
-			print(name)
 			assets_env.register(name, bundle)
 
 	# Loading the Blueprint in controllers defined by main.py - Handles routing

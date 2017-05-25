@@ -1,4 +1,7 @@
 import os
+import sys
+
+from getpass import getpass
 
 from flask_script import Manager, Server
 
@@ -15,6 +18,22 @@ manager.add_command("server", Server())
 @manager.command
 def createdb():
 	db.create_all()
+
+@manager.command
+def createuser():
+	db.create_all()
+
+	print('Enter username: ',)
+	username = input()
+	print('Enter email address: ',)
+	email = input()
+	password = getpass()
+	assert password == getpass('Password (again):')
+
+	user = User(username, email, password)
+	db.session.add(user)
+	db.session.commit()
+	print('User added.')
 
 if __name__ == "__main__":
     manager.run()
