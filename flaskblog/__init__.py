@@ -2,9 +2,13 @@ from flask import Flask
 from webassets.loaders import PythonLoader as PythonAssetsLoader
 
 from flaskblog import assets
+from flaskblog.models import db
 from flaskblog.controllers.main import main
 
-from flaskblog.extensions import assets_env
+from flaskblog.extensions import (
+	assets_env,
+	login_manager
+)
 
 def create_app(object_name):
 	"""
@@ -16,6 +20,10 @@ def create_app(object_name):
 	"""
 	app = Flask(__name__, static_url_path='/static')
 	app.config.from_object(object_name)
+
+	db.init_app(app)
+
+	login_manager.init_app(app)
 
 	# Import and register the different assets bundles
 	assets_env.init_app(app)
