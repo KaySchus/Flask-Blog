@@ -33,23 +33,24 @@
 
 					<div class="pure-control-group">
 						{{ form.username.label }}
+						{{ form.username() }}
 						{% if form.username.errors %}
 							{% for e in form.username.errors %}
-								<p class="help-block">{{ e }}</p>
+								<span class="pure-form-message-inline">{{ e }}</span>
 							{% endfor %}
+						{% else %}
+							<span class="pure-form-message-inline">This is a required field.</span>
 						{% endif %}
-						{{ form.username() }}
-						<span class="pure-form-message-inline">This is a required field.</span>
 					</div>
 
 					<div class="pure-control-group">
 						{{ form.password.label }}
+						{{ form.password(class_="form-control") }}
 						{% if form.password.errors %}
 							{% for e in form.password.errors %}
-								<p class="help-block">{{ e }}</p>
+								<span class="pure-form-message-inline">{{ e }}</span>
 							{% endfor %}
 						{% endif %}
-						{{ form.password(class_="form-control") }}
 					</div>
 
 					<div class="pure-controls">
