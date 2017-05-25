@@ -2,13 +2,12 @@ from flask import Flask
 from webassets.loaders import PythonLoader as PythonAssetsLoader
 
 from flaskblog import assets
-from flaskblog.models import db, user_datastore
+from flaskblog.models import db
 from flaskblog.controllers.main import main
 
 from flaskblog.extensions import (
 	assets_env,
-	login_manager,
-	security
+	login_manager
 )
 
 def create_app(object_name):
@@ -23,9 +22,6 @@ def create_app(object_name):
 	app.config.from_object(object_name)
 
 	db.init_app(app)
-
-	# Initializes Security for the current app
-	security.init_app(app, user_datastore)
 
 	login_manager.init_app(app)
 

@@ -1,5 +1,6 @@
 import os
 import sys
+import contextlib
 
 from getpass import getpass
 
@@ -20,12 +21,19 @@ def createdb():
 	db.create_all()
 
 @manager.command
+def dropdb():
+	if env == os.environ.get('FLASKBLOG_ENV', 'dev'):
+		with contextlib.suppress(FileNotFoundError):
+			os.remove('database.db')
+
+
+@manager.command
 def createuser():
 	db.create_all()
 
-	print('Enter username: ',)
+	print('Enter username: ')
 	username = input()
-	print('Enter email address: ',)
+	print('Enter email address: ')
 	email = input()
 	password = getpass()
 	assert password == getpass('Password (again):')
