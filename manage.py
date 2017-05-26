@@ -17,15 +17,13 @@ manager = Manager(app)
 manager.add_command("server", Server())
 
 @manager.command
-def createdb():
+def create_db():
 	db.create_all()
 
 @manager.command
-def dropdb():
-	if env == os.environ.get('FLASKBLOG_ENV', 'dev'):
-		with contextlib.suppress(FileNotFoundError):
-			os.remove('database.db')
-
+def drop_db():
+	#Drops all DB tables
+	db.drop_all()
 
 @manager.command
 def createuser():
