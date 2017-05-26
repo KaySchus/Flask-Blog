@@ -1,8 +1,25 @@
+import os
+import configparser
+
 class Config(object):
     # Secret key for session variables, will be used later
     SECRET_KEY = 'SUPER SECRET'
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    MAIL_PORT = 465
+    MAIL_USE_TLS = False
+    MAIL_USE_SSL = True
+
+    def __init__(self, basedir):
+        config_settings = configparser.ConfigParser()
+        config_settings.read(os.path.join(basedir, 'config.ini'))
+
+        MAIL_SERVER = config_settings['Email']['MAIL_SERVER']
+        MAIL_USERNAME = config_settings['Email']['MAIL_USERNAME']
+        MAIL_PASSWORD = config_settings['Email']['MAIL_PASSWORD']
+
+        SECRET_KEY = config_settings['Key']['SECRET_KEY']
 
 # Production Configuration
 class ProdConfig(Config):

@@ -8,9 +8,13 @@ from flask_script import Manager, Server
 
 from flaskblog import create_app
 from flaskblog.models import db, User
+from flaskblog.settings import Config
 
+
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 env = os.environ.get('FLASKBLOG_ENV', 'dev')
+config = Config(basedir)
 app = create_app('flaskblog.settings.%sConfig' % env.capitalize())
 
 manager = Manager(app)

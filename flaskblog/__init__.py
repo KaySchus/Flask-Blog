@@ -7,7 +7,8 @@ from flaskblog.controllers.main import main
 
 from flaskblog.extensions import (
 	assets_env,
-	login_manager
+	login_manager,
+	mail
 )
 
 def create_app(object_name):
@@ -24,6 +25,8 @@ def create_app(object_name):
 	db.init_app(app)
 
 	login_manager.init_app(app)
+
+	mail.init_app(app)
 
 	# Import and register the different assets bundles
 	assets_env.init_app(app)
