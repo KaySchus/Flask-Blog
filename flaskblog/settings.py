@@ -1,6 +1,10 @@
 import os
 import configparser
 
+basedir = os.path.abspath(os.path.dirname(__file__))
+config_settings = configparser.ConfigParser()
+config_settings.read(os.path.join(basedir, 'config.ini'))
+
 class Config(object):
     # Secret key for session variables, will be used later
     SECRET_KEY = 'SUPER SECRET'
@@ -10,16 +14,11 @@ class Config(object):
     MAIL_PORT = 465
     MAIL_USE_TLS = False
     MAIL_USE_SSL = True
+    MAIL_SERVER = config_settings['Email']['MAIL_SERVER']
+    MAIL_USERNAME = config_settings['Email']['MAIL_USERNAME']
+    MAIL_PASSWORD = config_settings['Email']['MAIL_PASSWORD']
 
-    def __init__(self, basedir):
-        config_settings = configparser.ConfigParser()
-        config_settings.read(os.path.join(basedir, 'config.ini'))
-
-        MAIL_SERVER = config_settings['Email']['MAIL_SERVER']
-        MAIL_USERNAME = config_settings['Email']['MAIL_USERNAME']
-        MAIL_PASSWORD = config_settings['Email']['MAIL_PASSWORD']
-
-        SECRET_KEY = config_settings['Key']['SECRET_KEY']
+    SECRET_KEY = config_settings['Key']['SECRET_KEY']
 
 # Production Configuration
 class ProdConfig(Config):
