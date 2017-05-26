@@ -2,8 +2,9 @@ import os
 import configparser
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+parentdir = os.path.abspath(os.path.join(basedir, os.pardir))
 config_settings = configparser.ConfigParser()
-config_settings.read(os.path.join(basedir, 'config.ini'))
+config_settings.read(os.path.join(parentdir, 'config.ini'))
 
 class Config(object):
     # Secret key for session variables, will be used later
