@@ -5,13 +5,16 @@ from werkzeug.security import generate_password_hash, check_password_hash
 db = SQLAlchemy()
 
 class User(db.Model, UserMixin):
+
+	__tablename__ = "users"
+
 	id = db.Column(db.Integer(), primary_key=True)
-	username = db.Column(db.String(80), unique=True)
-	email = db.Column(db.String(255), unique=True)
-	password = db.Column(db.String(255))
-	active = db.Column(db.Boolean())
-	confirmed = db.Column(db.Boolean())
-	confirmed_at = db.Column(db.DateTime())
+	username = db.Column(db.String, unique=True, nullable=False)
+	email = db.Column(db.String(), unique=True, nullable=False)
+	password = db.Column(db.String(), nullable=False)
+	active = db.Column(db.Boolean(), nullable=False, default=True)
+	confirmed = db.Column(db.Boolean(), nullable=False, default=False)
+	confirmed_at = db.Column(db.DateTime(), nullable=False)
 
 	def __init__(self, username, email, password):
 		self.username = username
