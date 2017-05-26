@@ -44,3 +44,4 @@ appname/static/public/*
 
 # Ini files - storing config specific info
 .ini
+*.ini
