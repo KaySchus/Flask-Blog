@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import TextField, PasswordField
 from wtforms import validators
 
-from .models import User
+from flaskblog.models import User
 
 
 class LoginForm(FlaskForm):

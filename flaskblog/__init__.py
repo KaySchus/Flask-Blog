@@ -3,7 +3,8 @@ from webassets.loaders import PythonLoader as PythonAssetsLoader
 
 from flaskblog import assets
 from flaskblog.models import db
-from flaskblog.controllers.main import main
+from flaskblog.main.views import main_blueprint
+from flaskblog.user.views import user_blueprint
 
 from flaskblog.extensions import (
 	assets_env,
@@ -35,6 +36,7 @@ def create_app(object_name):
 			assets_env.register(name, bundle)
 
 	# Loading the Blueprint in controllers defined by main.py - Handles routing
-	app.register_blueprint(main)
+	app.register_blueprint(main_blueprint)
+	app.register_blueprint(user_blueprint)
 
 	return app
