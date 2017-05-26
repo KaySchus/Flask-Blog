@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import TextField, PasswordField
-from wtforms import validators
+from wtforms import TextField, PasswordField, validators
+from wtforms.validators import DataRequired, Email, Length,EqualTo
 
 from flaskblog.models import User
 
@@ -83,7 +83,7 @@ class RegisterForm(FlaskForm):
 
 		return True
 
-class ChangePasswordForm(Form):
+class ChangePasswordForm(FlaskForm):
 	password = PasswordField(
 		u'Password',
 		validators=[DataRequired(), Length(min=P_MIN_LENGTH, max=P_MAX_LENGTH)]
