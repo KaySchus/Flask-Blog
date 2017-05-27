@@ -8,7 +8,7 @@ from flaskblog.models import User
 assets_env = Environment()
 
 login_manager = LoginManager()
-login_manager.login_view = "main.login"
+login_manager.login_view = "user.login_route"
 login_manager.login_message_category = "warning"
 
 mail = Mail()

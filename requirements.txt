@@ -21,5 +21,3 @@ SQLAlchemy==1.1.10
 webassets==0.12.1
 Werkzeug==0.12.2
 WTForms==2.1
-
-https://github.com/mjhea0/flask-basic-registration/blob/master/project/user/views.py
