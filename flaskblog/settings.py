@@ -16,9 +16,10 @@ class Config(object):
     MAIL_SERVER = config_settings['Email']['MAIL_SERVER']
     MAIL_USERNAME = config_settings['Email']['MAIL_USERNAME']
     MAIL_PASSWORD = config_settings['Email']['MAIL_PASSWORD']
+    MAIL_CONFIRMATION_SENDER = config_settings['Email']['MAIL_CONFIRMATION_SENDER']
 
-    SECRET_KEY = config_settings['Key']['SECRET_KEY']
-    SECURITY_PASSWORD_SALT = config_settings['Key']['SECURITY_PASSWORD_SALT']
+    SECRET_KEY = config_settings['Security']['SECRET_KEY']
+    SECURITY_PASSWORD_SALT = config_settings['Security']['SECURITY_PASSWORD_SALT']
     WTF_CSRF_ENABLED = True
 
 # Production Configuration
