@@ -4,7 +4,7 @@ from flask_mail import Message
 
 from flaskblog.extensions import mail
 from flaskblog.models import User, db
-from flaskblog.user.forms import LoginForm, RegisterForm
+from flaskblog.user.forms import LoginForm, RegisterForm, ChangePasswordForm
 
 
 user_blueprint = Blueprint('user', __name__)
@@ -47,3 +47,21 @@ def logout_route():
 	flash("You have been logged out.", "success")
 
 	return redirect(url_for("main.home_route"))
+
+@user_blueprint.route('/profile', methods=['GET', 'POST'])
+@login_required
+def profile_route():
+	form = ChangePasswordForm(request.form)
+
+	if form.validate_on_submit():
+		user = User.query.filter_by(email=current_user.email).first()
+		if user:
+			user.setpassword(form.password.data)
+			db.session.commit()
+			flash('Password successfully changed.', 'success')
+			return redirect(url_for('user.profile_route'))
+		else:
+			flash('Password change was unsuccessful.', 'danger')
+			return redirect(url_for('user.profile_route'))
+			
+	return render_template('user/profile.html', form=form)
