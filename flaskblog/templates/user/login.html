@@ -7,57 +7,35 @@
 {% endblock %}.
 
 {% block body %}
-	<div id="layout" class="pure-g">
-		<div class="sidebar pure-u-1 pure-u-md-1-4">
-			<div class="header">
-				<h1 class="brand-title">Flask Blog</h1>
-				<h2 class="brand-tagline">Creating a simple blog using Flask</h2>
+	<form class="pure-form pure-form-aligned" role="form" action="{{ url_for('.login_route') }}" method="post">
+		<fieldset>
+			{{ form.hidden_tag() }}
 
-				<nav class="nav">
-					<ul class="nav-list">
-						<li class="nav-item">
-							<a class="pure-button" href="http://purecss.io">Pure</a>
-						</li>
-						<li class="nav-item">
-							<a class="pure-button" href="http://flask.pocoo.org/">Flask</a>
-						</li>
-					</ul>
-				</nav>
+			<div class="pure-control-group">
+				{{ form.username.label }}
+				{{ form.username() }}
+				{% if form.username.errors %}
+					{% for e in form.username.errors %}
+						<span class="pure-form-message-inline">{{ e }}</span>
+					{% endfor %}
+				{% else %}
+					<span class="pure-form-message-inline">This is a required field.</span>
+				{% endif %}
 			</div>
-		</div>
 
-		<div class="content pure-u-1 pure-u-md-3-4">
-			<form class="pure-form pure-form-aligned" role="form" action="{{ url_for('.login_route') }}" method="post">
-				<fieldset>
-					{{ form.hidden_tag() }}
+			<div class="pure-control-group">
+				{{ form.password.label }}
+				{{ form.password(class_="form-control") }}
+				{% if form.password.errors %}
+					{% for e in form.password.errors %}
+						<span class="pure-form-message-inline">{{ e }}</span>
+					{% endfor %}
+				{% endif %}
+			</div>
 
-					<div class="pure-control-group">
-						{{ form.username.label }}
-						{{ form.username() }}
-						{% if form.username.errors %}
-							{% for e in form.username.errors %}
-								<span class="pure-form-message-inline">{{ e }}</span>
-							{% endfor %}
-						{% else %}
-							<span class="pure-form-message-inline">This is a required field.</span>
-						{% endif %}
-					</div>
-
-					<div class="pure-control-group">
-						{{ form.password.label }}
-						{{ form.password(class_="form-control") }}
-						{% if form.password.errors %}
-							{% for e in form.password.errors %}
-								<span class="pure-form-message-inline">{{ e }}</span>
-							{% endfor %}
-						{% endif %}
-					</div>
-
-					<div class="pure-controls">
-						<button type="submit" class="pure-button pure-button-primary">Submit</button>
-					</div>
-				</fieldset>
-            </form>
-		</div>
-	</div>
+			<div class="pure-controls">
+				<button type="submit" class="pure-button pure-button-primary">Submit</button>
+			</div>
+		</fieldset>
+    </form>
 {% endblock %}
