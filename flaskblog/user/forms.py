@@ -17,7 +17,7 @@ E_MAX_LENGTH = 254
 
 
 class LoginForm(FlaskForm):
-	username_email = TextField(u'Username/Email', validators=[validators.required()])
+	username = TextField(u'Username', validators=[validators.required()])
 	password = PasswordField(u'Password', validators=[validators.optional()])
 
 	def validate(self):
@@ -30,14 +30,12 @@ class LoginForm(FlaskForm):
 		# Does our user exist (Checks both username OR password - kind of dirty)
 		user = User.query.filter_by(username=self.username.data).first()
 		if not user:
-			user = User.query.filter_by(email=self.email.data).first()
-			if not user:
-				self.username.errors.append('Invalid username/email or password')
-				return False
+			self.username.errors.append('Invalid username or password')
+			return False
 
 		# Do the passwords match
 		if not user.check_password(self.password.data):
-			self.username.errors.append('Invalid username/email or password')
+			self.username.errors.append('Invalid username or password')
 			return False
 
 		return True

@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
 	password = db.Column(db.String(), nullable=False)
 	active = db.Column(db.Boolean(), nullable=False, default=True)
 	confirmed = db.Column(db.Boolean(), nullable=False, default=False)
-	confirmed_at = db.Column(db.DateTime(), nullable=False)
+	confirmed_at = db.Column(db.DateTime())
 
 	def __init__(self, username, email, password):
 		self.username = username
