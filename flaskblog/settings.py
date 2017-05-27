@@ -8,8 +8,6 @@ config_settings.read(os.path.join(parentdir, 'config.ini'))
 
 class Config(object):
     # Secret key for session variables, will be used later
-    SECRET_KEY = 'SUPER SECRET'
-
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     MAIL_PORT = 465
@@ -20,6 +18,8 @@ class Config(object):
     MAIL_PASSWORD = config_settings['Email']['MAIL_PASSWORD']
 
     SECRET_KEY = config_settings['Key']['SECRET_KEY']
+    SECURITY_PASSWORD_SALT = config_settings['Key']['SECURITY_PASSWORD_SALT']
+    WTF_CSRF_ENABLED = True
 
 # Production Configuration
 class ProdConfig(Config):

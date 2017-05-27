@@ -29,7 +29,7 @@
 		<div class="content pure-u-1 pure-u-md-3-4">
 			<form class="pure-form pure-form-aligned" role="form" action="{{ url_for('.register_route') }}" method="post">
 				<fieldset>
-					{{ form.hidden_tag() }}
+					{{ form.csrf_token }}
 
 					<div class="pure-control-group">
 						{{ form.username.label }}

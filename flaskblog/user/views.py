@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, flash, request, redirect, url_for
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from flask_mail import Message
 
 from flaskblog.extensions import mail
@@ -56,12 +56,12 @@ def profile_route():
 	if form.validate_on_submit():
 		user = User.query.filter_by(email=current_user.email).first()
 		if user:
-			user.setpassword(form.password.data)
+			user.set_password(form.password.data)
 			db.session.commit()
 			flash('Password successfully changed.', 'success')
 			return redirect(url_for('user.profile_route'))
 		else:
 			flash('Password change was unsuccessful.', 'danger')
 			return redirect(url_for('user.profile_route'))
-			
+
 	return render_template('user/profile.html', form=form)

@@ -36,30 +36,34 @@
 
 			<h2>Change Password</h2>
 			<br>
-			<form class="form-reset" role="form" method="post" action="">
-	  			<p>
-	    			{{ form.password(placeholder="password") }}
-	    			<span class="error">
-		      			{% if form.password.errors %}
-							{% for error in form.password.errors %}
-								{{ error }}
+			<form class="pure-form pure-form-aligned" role="form" action="{{ url_for('.profile_route') }}" method="post">
+				<fieldset>
+					{{ form.csrf_token }}
+
+		  			<div class="pure-control-group">
+						{{ form.password.label }}
+						{{ form.password(class_="form-control") }}
+						{% if form.password.errors %}
+							{% for e in form.password.errors %}
+									<span class="pure-form-message-inline">{{ e }}</span>
 							{% endfor %}
 						{% endif %}
-					</span>
-				</p>
+					</div>
 
-				<p>
-					{{ form.confirm(placeholder="confirm") }}
-					<span class="error">
+					<div class="pure-control-group">
+						{{ form.confirm.label }}
+						{{ form.confirm(class_="form-control") }}
 						{% if form.confirm.errors %}
-							{% for error in form.confirm.errors %}
-								{{ error }}
+							{% for e in form.confirm.errors %}
+								<span class="pure-form-message-inline">{{ e }}</span>
 							{% endfor %}
 						{% endif %}
-					</span>
-				</p>
+					</div>
 
-				<button class="btn btn-success" type="submit">Update</button>
+					<div class="pure-controls">
+						<button type="submit" class="pure-button pure-button-primary">Submit</button>
+					</div>
+				</fieldset>
 			</form>
 		</div>
 	</div>
